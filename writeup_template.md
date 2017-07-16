@@ -29,6 +29,7 @@ The goals / steps of this project are the following:
 ## Rubric Points
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
+Here is the link to my [python notebook code](http://localhost:8888/notebooks/CarND-Behavioral-Cloning-P3/model.ipynb)
 ---
 ###Files Submitted & Code Quality
 
@@ -54,23 +55,23 @@ The model.py file contains the code for training and saving the convolution neur
 
 ####1. An appropriate model architecture has been employed
 
-My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
+My model consists of a convolution neural network with 7x7, 5x5, and 3x3 filter sizes and depths between 64 and 524 (model.py lines --update later--) 
 
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+The model includes RELU layers to introduce nonlinearity (code line --update later--), and the data is normalized in the model using a Keras lambda layer (code line --update later--). 
 
 ####2. Attempts to reduce overfitting in the model
 
-The model contains dropout layers in order to reduce overfitting (model.py lines 21). 
+The model contains maxpoool and dropout layers in order to reduce overfitting (model.py lines --update later--). 
 
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+The model was trained and validated on different data sets to ensure that the model was not overfitting (code line --update later--). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 ####3. Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
+The model used an adam optimizer, so the learning rate was not tuned manually (model.py line --update later--).
 
 ####4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
+Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road, driving in reverse direction. 
 
 For details about how I created the training data, see the next section. 
 
@@ -94,11 +95,36 @@ At the end of the process, the vehicle is able to drive autonomously around the 
 
 ####2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
+The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes
+
+| Layer         		|     Description	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| Input         		| 160x320x3 RGB image   							| 
+| Normalization lambda     	| outputs 160x320x3 	|
+| Crop2D lambda     	| outputs 90x320x3 	|
+| Convolution 7x7     	| 1x1 stride, VALID padding, outputs 84x314x64 	|
+| RELU					|												|
+| Max pooling	      	| 3x3 stride,  outputs 28x104x64 				|
+| Convolution 5x5     	| 1x1 stride, VALID padding, outputs 24x100x128 	|
+| RELU					|												|
+| Max pooling	      	| 2x2 stride,  outputs 12x50x128 				|
+| Convolution 3x3     	| 1x1 stride, VALID padding, outputs 10x48x256 	|
+| RELU					|												|
+| Convolution 3x3     	| 1x1 stride, VALID padding, outputs 8x46x384 	|
+| RELU					|												|
+| Convolution 3x3     	| 1x1 stride, VALID padding, outputs 6x44x256 	|
+| RELU					|												|
+| Max pooling	      	| 2x2 stride,  outputs 3x22x256 				|
+| Dropout					| dropout= 0.5												|
+| Flatten					| 1x16896												|
+| Fully connected	|   outputs 1x524					|
+| Dropout					| dropout= 0.5												|
+| Fully connected	|   outputs 1x64					|
+| Softmax				| outputs 1x1        												|
 
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
 
-![alt text][image1]
+![Model Architecture Diagram][image1]
 
 ####3. Creation of the Training Set & Training Process
 
