@@ -132,29 +132,33 @@ To capture good driving behavior, I first recorded two laps on track one using c
 
 ![Driving in the middle](./writeup_imgs/center_normal.jpg)
 
+My initial training set didn't resulted in a model that succeeded in completing the track for one loop without failures. Once the observation I has was it is failing at certain places (such as some curves, before and after the bridge). For this reason I've recorded more short training sessions for that stech that caused failures. Trining with this data improved the performance of the model and got better driving of the car.
+
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to recover from the edges to the middle of the road. These images show what a recovery looks like starting from way left to recover to the middle of the road in the first row and similar steps for recover from right in the second row :
 
-![alt text](./writeup_imgs/Way_Left.jpg)
-![alt text](./writeup_imgs/recover_from_lft.jpg)
-![alt text](./writeup_imgs/Left_to_middle.jpg)
+![Way_Left](./writeup_imgs/Way_Left.jpg)
+![recover_from_lft](./writeup_imgs/recover_from_lft.jpg)
+![Left_to_middle](./writeup_imgs/Left_to_middle.jpg)
 
 
-![alt text](./writeup_imgs/Way_Right.jpg)
-![alt text](./writeup_imgs/recover_from_right.jpg)
-![alt text](./writeup_imgs/Right_to_middle.jpg)
+![Way_right](./writeup_imgs/Way_right.jpg)
+![recover_from_right](./writeup_imgs/recover_from_right.jpg)
+![Right_to_middle](./writeup_imgs/Right_to_middle.jpg)
 
 Then I repeated this process on track two in order to get more data points.
 
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
+To augment the data set, I also flipped images for the left and right cameras and its corresponding steering angles thinking that this would increase the training set for the drving on a lane that is a mirror of the current track. This will improve the data set for trining without having to record another track. For example, here is an image that has then been flipped:
 
-![alt text](./writeup_imgs/recover_from_lft.jpg)
-![alt text](./writeup_imgs/filpped_img.jpg)
-
-Etc ....
-
-After the collection process, I had X number of data points. I then preprocessed this data by ...
+![Before flipped](./writeup_imgs/recover_from_lft.jpg)
+![After flipped](./writeup_imgs/flipped_img.jpg)
 
 
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
+After the collection process, I had 67080 number of data points (images, and its corresponding angles). I then preprocessed this data by a Lambda function that converts the range of pixel values from -0.5 to 0.5 (range of 1)
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+
+I finally randomly shuffled the data set and put 20% of the data into a validation set. 
+
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 10 as evidenced by the following loss curve where the change in validation loss is getting smaller. 
+![loss curve](./writeup_imgs/loss_with_adam_july_15th_model.jpg)
+I used an adam optimizer so that manually training the learning rate wasn't necessary. I also experimented with sgd optimizer and didn't see any improvements compared to using adam optimizer.
+
