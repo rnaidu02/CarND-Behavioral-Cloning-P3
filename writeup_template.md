@@ -124,15 +124,15 @@ The final model architecture (model.py lines 18-24) consisted of a convolution n
 
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
 
-![Model Architecture Diagram][image1]
+![Model Architecture Diagram](./writeup_imgs/model.png)
 
 ####3. Creation of the Training Set & Training Process
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
 
-![alt text][image2]
+![Driving in the middle](./writeup_imgs/center_normal.jpg)
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
+I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to recover from the edges to the middle of the road. These images show what a recovery looks like starting from way left to recover to the middle of the road in the first row and similar steps for recover from right in the second row :
 
 ![alt text][image3]
 ![alt text][image4]
