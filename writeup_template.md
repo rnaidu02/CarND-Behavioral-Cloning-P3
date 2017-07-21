@@ -134,16 +134,21 @@ To capture good driving behavior, I first recorded two laps on track one using c
 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to recover from the edges to the middle of the road. These images show what a recovery looks like starting from way left to recover to the middle of the road in the first row and similar steps for recover from right in the second row :
 
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
+![alt text](./writeup_imgs/Way_Left.jpg)
+![alt text](./writeup_imgs/recover_from_lft.jpg)
+![alt text](./writeup_imgs/Left_to_middle.jpg)
+
+
+![alt text](./writeup_imgs/Way_Right.jpg)
+![alt text](./writeup_imgs/recover_from_right.jpg)
+![alt text](./writeup_imgs/Right_to_middle.jpg)
 
 Then I repeated this process on track two in order to get more data points.
 
 To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
 
-![alt text][image6]
-![alt text][image7]
+![alt text](./writeup_imgs/recover_from_lft.jpg)
+![alt text](./writeup_imgs/filpped_img.jpg)
 
 Etc ....
 
