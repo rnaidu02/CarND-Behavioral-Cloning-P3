@@ -159,6 +159,6 @@ After the collection process, I had 67080 number of data points (images, and its
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 10 as evidenced by the following loss curve where the change in validation loss is getting smaller. 
-![loss curve](./writeup_imgs/loss_with_adam_july_15th_model.jpg)
+![loss curve](./writeup_imgs/loss_with_adam_july_15th_model.png)
 I used an adam optimizer so that manually training the learning rate wasn't necessary. I also experimented with sgd optimizer and didn't see any improvements compared to using adam optimizer.
 
