@@ -1,8 +1,8 @@
-#**Behavioral Cloning** 
+# **Behavioral Cloning** 
 
-##Writeup Template
+## Writeup Template
 
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
+### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
 
 ---
 
@@ -31,9 +31,9 @@ The goals / steps of this project are the following:
 
 Here is the link to my [python notebook code](http://localhost:8888/notebooks/CarND-Behavioral-Cloning-P3/model.ipynb)
 ---
-###Files Submitted & Code Quality
+### Files Submitted & Code Quality
 
-####1. Submission includes all required files and can be used to run the simulator in autonomous mode
+#### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
 
 My project includes the following files:
 * model.py containing the script to create and train the model
@@ -41,43 +41,43 @@ My project includes the following files:
 * model.h5 containing a trained convolution neural network 
 * writeup_report.md or writeup_report.pdf summarizing the results
 
-####2. Submission includes functional code
+#### 2. Submission includes functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model.h5
 ```
 
-####3. Submission code is usable and readable
+#### 3. Submission code is usable and readable
 
 The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. An appropriate model architecture has been employed
+#### 1. An appropriate model architecture has been employed
 
 My model consists of a convolution neural network with 7x7, 5x5, and 3x3 filter sizes and depths between 64 and 524 (model.py lines --update later--) 
 
 The model includes RELU layers to introduce nonlinearity (code line --update later--), and the data is normalized in the model using a Keras lambda layer (code line --update later--). 
 
-####2. Attempts to reduce overfitting in the model
+#### 2. Attempts to reduce overfitting in the model
 
 The model contains maxpoool and dropout layers in order to reduce overfitting (model.py lines --update later--). 
 
 The model was trained and validated on different data sets to ensure that the model was not overfitting (code line --update later--). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
-####3. Model parameter tuning
+#### 3. Model parameter tuning
 
 The model used an adam optimizer, so the learning rate was not tuned manually (model.py line --update later--).
 
-####4. Appropriate training data
+#### 4. Appropriate training data
 
 Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road, driving in reverse direction. 
 
 For details about how I created the training data, see the next section. 
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. Solution Design Approach
+#### 1. Solution Design Approach
 
 The overall strategy for deriving a model architecture was to ...
 
@@ -93,7 +93,7 @@ The final step was to run the simulator to see how well the car was driving arou
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
-####2. Final Model Architecture
+#### 2. Final Model Architecture
 
 The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes
 
@@ -126,13 +126,13 @@ Here is a visualization of the architecture (note: visualizing the architecture 
 
 ![Model Architecture Diagram](./writeup_imgs/model.png)
 
-####3. Creation of the Training Set & Training Process
+#### 3. Creation of the Training Set & Training Process
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
 
 ![Driving in the middle](./writeup_imgs/center_normal.jpg)
 
-My initial training set didn't resulted in a model that succeeded in completing the track for one loop without failures. Once the observation I has was it is failing at certain places (such as some curves, before and after the bridge). For this reason I've recorded more short training sessions for that stech that caused failures. Trining with this data improved the performance of the model and got better driving of the car.
+My initial training set didn't resulted in a model that succeeded in completing the track for one loop without failures. The driving is failing at certain places (such as some curves, before and after the bridge). For this reason I've recorded more short training sessions for that strech where it caused failures. Training with this data improved the performance of the model and got better during the driving (not going out of the road)
 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to recover from the edges to the middle of the road. These images show what a recovery looks like starting from way left to recover to the middle of the road in the first row and similar steps for recover from right in the second row :
 
@@ -145,7 +145,7 @@ I then recorded the vehicle recovering from the left side and right sides of the
 ![recover_from_right](./writeup_imgs/recover_from_right.jpg)
 ![Right_to_middle](./writeup_imgs/Right_to_middle.jpg)
 
-Then I repeated this process on track two in order to get more data points.
+Then I repeated this process on track two in order to get more data points. However this resulted in having issues with the original track driving and cause
 
 To augment the data set, I also flipped images for the left and right cameras and its corresponding steering angles thinking that this would increase the training set for the drving on a lane that is a mirror of the current track. This will improve the data set for trining without having to record another track. For example, here is an image that has then been flipped:
 
