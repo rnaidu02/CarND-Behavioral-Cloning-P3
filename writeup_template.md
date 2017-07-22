@@ -1,8 +1,5 @@
 # **Behavioral Cloning** 
 
-## Writeup Template
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
 
 ---
 
@@ -27,7 +24,7 @@ The goals / steps of this project are the following:
 [image7]: ./examples/placeholder_small.png "Flipped Image"
 
 ## Rubric Points
-###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
+### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
 Here is the link to my [python notebook code](http://localhost:8888/notebooks/CarND-Behavioral-Cloning-P3/model.ipynb)
 ---
@@ -79,9 +76,11 @@ For details about how I created the training data, see the next section.
 
 #### 1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to ...
+The overall strategy for deriving a model architecture was to use convolutions to find the features inside the images and thru them find a pattern that maps to a corresponding steering angle 
 
-My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
+My first step was to use a convolution neural network model similar to LeNet [Keras LeNet](https://github.com/fchollet/keras/blob/master/examples/mnist_cnn.py)  I thought this model might be appropriate because it is dealing with the images as input.
+
+I've trained this model with two rounds of track 1 data. The mse for both training and validation was not that bad (about 0.3) but when it is tested in autonomous mode In my opinion the training and validation errors didn't follow the normal pattern of training error is always less than validation error. In this case since the loss function is MSE and the validation and training data is composed of track 1 data multiple times - validation data may not be unique and could be similar data as in training set. However this model failed at the turns. I thought it could be due to two reasons. The number of convolution (32) and the convolution sizes (3x3) are small in number and the layers are less in number. At the same time the input image size is about 320x90. For this reason I've modified the model to have 
 
 In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
 
