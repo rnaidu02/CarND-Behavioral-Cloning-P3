@@ -123,33 +123,33 @@ The final model architecture (model.py lines 136-218) consisted of a convolution
 
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
 
-![Model Architecture Diagram](https://github.com/rnaidu02/CarND-Behavioral-Cloning-P3/tree/master/writeup_imgs/model.png)
+![Model Architecture Diagram](./writeup_imgs/model.png)
 
 #### 3. Creation of the Training Set & Training Process
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
 
-![Driving in the middle](https://github.com/rnaidu02/CarND-Behavioral-Cloning-P3/tree/master/writeup_imgs/center_normal.jpg)
+![Driving in the middle](./writeup_imgs/center_normal.jpg)
 
 My initial training set didn't resulted in a model that succeeded in completing the track for one loop without failures. The driving is failing at certain places (such as some curves, before and after the bridge). For this reason I've recorded more short training sessions for that strech where it caused failures. Training with this data improved the performance of the model and got better during the driving (not going out of the road)
 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to recover from the edges to the middle of the road. These images show what a recovery looks like starting from way left to recover to the middle of the road in the first row and similar steps for recover from right in the second row :
 
-![Way_Left](https://github.com/rnaidu02/CarND-Behavioral-Cloning-P3/tree/master/writeup_imgs/Way_Left.jpg)
-![recover_from_lft](https://github.com/rnaidu02/CarND-Behavioral-Cloning-P3/tree/master/writeup_imgs/recover_from_lft.jpg)
-![Left_to_middle](https://github.com/rnaidu02/CarND-Behavioral-Cloning-P3/tree/master/writeup_imgs/Left_to_middle.jpg)
+![Way_Left](./writeup_imgs/Way_Left.jpg)
+![recover_from_lft](./writeup_imgs/recover_from_lft.jpg)
+![Left_to_middle](./writeup_imgs/Left_to_middle.jpg)
 
 
-![Way_right](https://github.com/rnaidu02/CarND-Behavioral-Cloning-P3/tree/master/writeup_imgs/Way_right.jpg)
-![recover_from_right](https://github.com/rnaidu02/CarND-Behavioral-Cloning-P3/tree/master/writeup_imgs/recover_from_right.jpg)
-![Right_to_middle](https://github.com/rnaidu02/CarND-Behavioral-Cloning-P3/tree/master/writeup_imgs/Right_to_middle.jpg)
+![Way_right](./writeup_imgs/Way_right.jpg)
+![recover_from_right](./writeup_imgs/recover_from_right.jpg)
+![Right_to_middle](./writeup_imgs/Right_to_middle.jpg)
 
 Then I repeated this process on track two in order to get more data points. However this resulted in having issues with the original track driving and cause
 
 To augment the data set, I also flipped images for the left and right cameras and its corresponding steering angles thinking that this would increase the training set for the drving on a lane that is a mirror of the current track. This will improve the data set for trining without having to record another track. For example, here is an image that has then been flipped:
 
-![Before flipped](https://github.com/rnaidu02/CarND-Behavioral-Cloning-P3/tree/master/writeup_imgs/recover_from_lft.jpg)
-![After flipped](https://github.com/rnaidu02/CarND-Behavioral-Cloning-P3/tree/master/writeup_imgs/flipped_img.jpg)
+![Before flipped](./writeup_imgs/recover_from_lft.jpg)
+![After flipped](./writeup_imgs/flipped_img.jpg)
 
 
 After the collection process, I had 67080 number of data points (images, and its corresponding angles). I then preprocessed this data by a Lambda function that converts the range of pixel values from -0.5 to 0.5 (range of 1)
@@ -158,24 +158,24 @@ After the collection process, I had 67080 number of data points (images, and its
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 10 as evidenced by the following loss curve where the change in validation loss is getting smaller. 
-![loss curve](https://github.com/rnaidu02/CarND-Behavioral-Cloning-P3/tree/master/writeup_imgs/loss_with_adam_july_15th_model.png)
+![loss curve](./writeup_imgs/loss_with_adam_july_15th_model.png)
 I used an adam optimizer so that manually training the learning rate wasn't necessary. I also experimented with sgd optimizer and didn't see any improvements compared to using adam optimizer.
 
 ### My Reflections
 #### I spent most of my time for this project on the following
-   - Modifying and playing with the model (specifically the convoultion size, and the number of convolutions)
-   - Adding different sets of training data (of those 10 sets that I recorded, I've used only 5 at the end)
-   - Training the model and testing with the above mentioned combinations
-   - Adding track 2 training data to the existing training data to see how the modified model performs on both track1 and track 2
+- Modifying and playing with the model (specifically the convoultion size, and the number of convolutions)
+- Adding different sets of training data (of those 10 sets that I recorded, I've used only 5 at the end)
+- Training the model and testing with the above mentioned combinations
+- Adding track 2 training data to the existing training data to see how the modified model performs on both track1 and track 2
 
 #### Here are my observations after the end of this training activity:
-    - Generating/gathering right traning data takes big amount of time.
-    - Creating a model that fits the requirement is also takes big chunk of the time.
-    - Training a model with the above combination multiple times is much complex task than I've imagined.
-    - However I've learned a lot with the image augmentation techniques during this and last project (Traffic sign detection), how to chose a righ batch size, and most of all how to construct a network topology from scratch and look at the memory requirements/constraints during the model design.
+- Generating/gathering right traning data takes big amount of time.
+- Creating a model that fits the requirement is also takes big chunk of the time.
+- Training a model with the above combination multiple times is much complex task than I've imagined.
+- However I've learned a lot with the image augmentation techniques during this and last project (Traffic sign detection), how to chose a righ batch size, and most of all how to construct a network topology from scratch and look at the memory requirements/constraints during the model design.
     
 #### What can be done if I have mode time from my side:
-    - Try to generate good amount of training data on track 2, and see if the model will work on track 2 and as well as track 1.
-    - Play with different topologies for the model design.
-    - Pay more attention to the correction factor that is used to determine the left and right steering angle from the center steering angle.
+- Try to generate good amount of training data on track 2, and see if the model will work on track 2 and as well as track 1.
+- Play with different topologies for the model design.
+- Pay more attention to the correction factor that is used to determine the left and right steering angle from the center steering angle.
 
